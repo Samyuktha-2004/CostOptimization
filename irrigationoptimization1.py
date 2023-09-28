@@ -1,18 +1,4 @@
-import streamlit as st
-import pickle
-import numpy as np
-
-# Load your trained machine learning model (replace 'your_model.pkl' with your model's filename)
-with open("irrigationOptimization.pkl", "rb") as file:
-    model = pickle.load(file)
-
-# Define the Streamlit app
-st.title("Yield and Cost Optimization")
-st.markdown("By Your Name")
-
-st.subheader("Enter Yield and Cost:")
-yield_input = st.number_input("Yield:")
-cost_input = st.number_input("Cost:")
+inputs = None  # Initialize inputs outside the block
 
 if st.button("Optimize"):
     # Ensure that the inputs are not empty
@@ -31,5 +17,7 @@ if st.button("Optimize"):
 # Optionally, you can provide an explanation or guidance to the user
 
 # Debugging statements
-st.write(f"Inputs shape: {inputs.shape}")  # Debugging
-st.write(f"Model classes: {model.classes_}")  # Debugging
+if inputs is not None:
+    st.write(f"Inputs shape: {inputs.shape}")  # Debugging
+else:
+    st.write("Inputs are None")  # Debugging
