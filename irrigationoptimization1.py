@@ -9,7 +9,7 @@ with open("irrigationOptimization.pkl", "rb") as file:
 
 # Define the Streamlit app
 st.title("Yield and Cost Optimization")
-st.markdown("name")
+st.markdown("Datathon2.0")
 
 st.subheader("Enter Yield and Cost:")
 yield_input = st.number_input("Yield:")
