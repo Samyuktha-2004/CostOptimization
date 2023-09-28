@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 
 # Load your trained machine learning model (replace 'your_model.pkl' with your model's filename)
-with open("your_model.pkl", "rb") as file:
+with open("irrigationOptimization.pkl", "rb") as file:
     model = pickle.load(file)
 
 # Define the Streamlit app
