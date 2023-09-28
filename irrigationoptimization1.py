@@ -1,23 +1,32 @@
-inputs = None  # Initialize inputs outside the block
+import streamlit as st
+import pickle
+import pandas as pd
+from sklearn.metrics import r2_score
+
+# Load your trained machine learning model (replace 'your_model.pkl' with your model's filename)
+with open("irrigationOptimization.pkl", "rb") as file:
+    model = pickle.load(file)
+
+# Define the Streamlit app
+st.title("Yield and Cost Optimization")
+st.markdown("name")
+
+st.subheader("Enter Yield and Cost:")
+yield_input = st.number_input("Yield:")
+cost_input = st.number_input("Cost:")
 
 if st.button("Optimize"):
-    # Ensure that the inputs are not empty
-    if yield_input is not None and cost_input is not None:
-        # Make predictions using your model
-        inputs = np.array([[yield_input, cost_input]])
-        prediction = model.predict(inputs)
+    # Make predictions using your model
+    prediction = model.predict([[yield_input, cost_input]])[0]
 
-        st.header("Optimization Result:")
-        st.write(f"Predicted Yield: {prediction[0]:.2f}")
+    st.header("Optimization Result:")
+    st.write(f"Predicted Yield: {prediction:.2f}")
 
-        # Optionally, you can provide additional information or analysis here
-    else:
-        st.subheader("Please enter both Yield and Cost values.")
+    # Calculate the R2 score (you'll need actual yield values for this)
+    actual_yield =  0.8647847452107349
+    # Provide actual yield value here
+    r2 = r2_score([actual_yield], [prediction])
+    st.write(f"R2 Score: {r2:.2f}")
 
 # Optionally, you can provide an explanation or guidance to the user
 
-# Debugging statements
-if inputs is not None:
-    st.write(f"Inputs shape: {inputs.shape}")  # Debugging
-else:
-    st.write("Inputs are None")  # Debugging
